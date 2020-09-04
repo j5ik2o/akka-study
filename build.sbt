@@ -23,6 +23,7 @@ lazy val akka01 = (project in file("akka01"))
     name := "akka-study-01",
     commonSettings,
     libraryDependencies += akka,
+    libraryDependencies += logback,
     libraryDependencies += scalaTest % Test
   )
 

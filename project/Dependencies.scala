@@ -5,4 +5,6 @@ object Dependencies {
 
   val AkkaVersion = "2.6.8"
   lazy val akka = "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion
+
+  lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.3"
 }
