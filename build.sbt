@@ -19,7 +19,8 @@ lazy val root = (project in file("."))
   .aggregate(
     akka01,
     akka02,
-    akka03
+    akka03,
+    akka04
   )
 
 lazy val akka01 = (project in file("akka01"))
@@ -45,6 +46,17 @@ lazy val akka03 = (project in file("akka03"))
     name := "akka-study-03",
     commonSettings,
     libraryDependencies += akka,
+    libraryDependencies += logback,
+    libraryDependencies += scalaTest % Test
+  )
+
+lazy val akka04 = (project in file("akka04"))
+  .settings(
+    name := "akka-study-04",
+    commonSettings,
+    libraryDependencies += akka,
+    libraryDependencies += akkaStream,
+    libraryDependencies += akkaHttp,
     libraryDependencies += logback,
     libraryDependencies += scalaTest % Test
   )
