@@ -9,6 +9,7 @@ object Main extends App {
   def apply(): Behavior[NotUsed] = {
     Behaviors.setup { context =>
       context.spawn(FireAndForget(), "fire_and_forget")
+      context.spawn(RequestResponse(), "request_response")
 
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>

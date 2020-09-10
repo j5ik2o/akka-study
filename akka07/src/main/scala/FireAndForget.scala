@@ -21,18 +21,18 @@ object FireAndForget {
     }
   }
 
-}
+  object Printer {
 
-object Printer {
+    case class PrintMe(message: String)
 
-  case class PrintMe(message: String)
-
-  def apply(): Behavior[PrintMe] = {
-    Behaviors.receive {
-      case (context, PrintMe(message)) =>
-        context.log.info("[Printer]: {}", message)
-        Behaviors.same
+    def apply(): Behavior[PrintMe] = {
+      Behaviors.receive {
+        case (context, PrintMe(message)) =>
+          context.log.info("[Printer]: {}", message)
+          Behaviors.same
+      }
     }
+
   }
 
 }
