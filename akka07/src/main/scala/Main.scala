@@ -10,6 +10,7 @@ object Main extends App {
     Behaviors.setup { context =>
       context.spawn(FireAndForget(), "fire_and_forget")
       context.spawn(RequestResponse(), "request_response")
+      // context.spawn(AdaptedResponse(), "adapted_response") // not work, backend = ???
 
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>
