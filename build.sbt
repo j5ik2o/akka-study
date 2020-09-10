@@ -74,4 +74,16 @@ lazy val akka05 = (project in file("akka05"))
     libraryDependencies += scalaTest % Test
   )
 
+lazy val akka06 = (project in file("akka06"))
+  .settings(
+    name := "akka-study-06",
+    commonSettings,
+    libraryDependencies += akka,
+    libraryDependencies += akkaStreamTyped,
+    libraryDependencies += akkaStreamTyped,
+    libraryDependencies += akkaHttp,
+    libraryDependencies += logback,
+    libraryDependencies += scalaTest % Test
+  )
+
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
