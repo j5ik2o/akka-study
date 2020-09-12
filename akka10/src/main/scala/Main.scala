@@ -1,5 +1,7 @@
 package akka10
 
+import scala.concurrent.duration._
+
 import akka.actor.typed.{ActorSystem, Behavior, Terminated}
 import akka.actor.typed.scaladsl.Behaviors
 import akka.NotUsed
@@ -8,18 +10,17 @@ object Main extends App {
 
   def apply(): Behavior[NotUsed] = {
     Behaviors.setup { context =>
-      val printer = context.spawn(Printer(), "printer")
+      val printer = context.spawn(Printer[String](), "printer")
 
-      val after1second = context.spawn(After(1000), "after_1_second")
-      val after2second = context.spawn(After(2000), "after_2_second")
-      val after4second = context.spawn(After(4000), "after_4_second")
+      val after  = context.spawn(After[String](), "after")
+      val afters = context.spawn(Afters[String](), "afters")
 
-      after1second ! After.RequestMessage("hello1-1", printer)
-      after1second ! After.RequestMessage("hello1-2", printer)
-      after2second ! After.RequestMessage("hello2-1", printer)
-      after2second ! After.RequestMessage("hello2-2", printer)
-      after4second ! After.RequestMessage("hello3-1", printer)
-      after4second ! After.RequestMessage("hello3-2", printer)
+      (0 to 5000 by 1000).map(_.milli).foreach { d =>
+        after ! After.RequestMessage(s"after ${d.toMillis} [ms]", d, printer)
+      }
+
+      val durations = (0 to 5000 by 100).map(_.milli)
+      afters ! Afters.RequestMessage("yes", durations, printer)
 
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>
