@@ -9,6 +9,8 @@ object Main extends App {
   def apply(): Behavior[NotUsed] = {
     Behaviors.setup { context =>
       context.spawn(GenericResponseWrapper(), "generec_response_wrapper")
+      context.spawn(SendFutureResultToSelf(), "send_future_result_to_self")
+
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>
           Behaviors.stopped
