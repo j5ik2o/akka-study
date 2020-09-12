@@ -11,6 +11,8 @@ object Main extends App {
       context.spawn(GenericResponseWrapper(), "generec_response_wrapper")
       context.spawn(SendFutureResultToSelf(), "send_future_result_to_self")
 
+      // context.spawn(GeneralPurposeResponseAggregator(), "general_purpose_response_aggregator")
+
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>
           Behaviors.stopped
