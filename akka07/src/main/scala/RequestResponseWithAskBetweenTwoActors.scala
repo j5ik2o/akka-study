@@ -68,7 +68,7 @@ object RequestResponseWithAskBetweenTwoActors {
 // ask を用いるにはタイムアウトの設定が必要。
 // レスポンスが返る前にタイムアウトを迎えると ask は TimeoutException を吐いて失敗する
 
-// context: ActorContext[T] の時、 
+// context: ActorContext[T] の時、
 // context.ask[Req, Res] は
 // 第一引数に ActorRef[Req], ActorRef[Res] => Req
 // 第二引数に Try[Res] => T
