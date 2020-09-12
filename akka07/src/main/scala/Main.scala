@@ -11,6 +11,7 @@ object Main extends App {
       context.spawn(FireAndForget(), "fire_and_forget")
       context.spawn(RequestResponse(), "request_response")
       // context.spawn(AdaptedResponse(), "adapted_response") // not work, backend = ???
+      context.spawn(RequestResponseWithAskBetweenTwoActors(), "request_response_with_ask_between_two_actors")
 
       Behaviors.receiveSignal {
         case (_, Terminated(_)) =>
