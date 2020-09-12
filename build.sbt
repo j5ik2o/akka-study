@@ -25,92 +25,70 @@ lazy val root = (project in file("."))
     akka06,
     akka07,
     akka08,
+    akka09
   )
 
 lazy val akka01 = (project in file("akka01"))
   .settings(
     name := "akka-study-01",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka02 = (project in file("akka02"))
   .settings(
     name := "akka-study-02",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka03 = (project in file("akka03"))
   .settings(
     name := "akka-study-03",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka04 = (project in file("akka04"))
   .settings(
     name := "akka-study-04",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += akkaStream,
-    libraryDependencies += akkaHttp,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka05 = (project in file("akka05"))
   .settings(
     name := "akka-study-05",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += akkaStream,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaHttp,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka06 = (project in file("akka06"))
   .settings(
     name := "akka-study-06",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaHttp,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka07 = (project in file("akka07"))
   .settings(
     name := "akka-study-07",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaHttp,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
   )
 
 lazy val akka08 = (project in file("akka08"))
   .settings(
     name := "akka-study-08",
     commonSettings,
-    libraryDependencies += akka,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaStreamTyped,
-    libraryDependencies += akkaHttp,
-    libraryDependencies += logback,
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= all
+  )
+
+lazy val akka09 = (project in file("akka09"))
+  .settings(
+    name := "akka-study-09",
+    commonSettings,
+    libraryDependencies ++= all
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.

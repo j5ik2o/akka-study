@@ -11,4 +11,6 @@ object Dependencies {
   lazy val akkaHttp = "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion
 
   lazy val logback = "ch.qos.logback" % "logback-classic" % "1.2.3"
+
+  lazy val all = akka :: akkaStream :: akkaStreamTyped :: akkaHttp :: logback :: (scalaTest % Test) :: Nil
 }
