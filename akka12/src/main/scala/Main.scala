@@ -1,18 +1,24 @@
 package akka12
 
 import scala.util.{Success, Failure}
-import scala.concurrent.Future
+import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.duration._
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.AskPattern._
 import akka.util.Timeout
+import java.util.concurrent.{Executors, ExecutorService}
 
 object Main extends App {
 
-  implicit val wrapperActorSystem = ActorSystem(Wrapper(), "main")
+  val wrapperActorSystem = ActorSystem(Wrapper(), "main")
+  val timeout: Timeout   = 3.seconds
+  val scheduler          = wrapperActorSystem.scheduler
 
-  implicit val timeout: Timeout = 3.seconds
-  implicit val ec               = wrapperActorSystem.executionContext
+  val mainEc: ExecutionContext = new ExecutionContext {
+    private val executorService: ExecutorService       = Executors.newFixedThreadPool(32)
+    override def execute(runnable: Runnable): Unit     = executorService.execute(runnable)
+    override def reportFailure(cause: Throwable): Unit = throw cause
+  }
 
   println(s"\npress ENTER to terminate.\n")
 
@@ -24,14 +30,14 @@ object Main extends App {
       count += 1
       val mes = s"ya $count"
       println(mes)
-      val result: Future[String] = wrapperActorSystem.askWithStatus(Wrapper.RequestMessage(mes, _))
+      val result: Future[String] = wrapperActorSystem.askWithStatus(Wrapper.RequestMessage(mes, _))(timeout, scheduler)
       result.onComplete {
         case Success(value) => println(s"echo: $value")
         case Failure(e)     => println(s"error: ${e.getMessage}")
-      }
+      }(mainEc)
       Thread.sleep(200)
     }
-  }
+  }(mainEc)
 
   io.StdIn.readLine()
   active = false
