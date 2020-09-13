@@ -27,7 +27,8 @@ lazy val root = (project in file("."))
     akka08,
     akka09,
     akka10,
-    akka11
+    akka11,
+    akka12
   )
 
 lazy val akka01 = (project in file("akka01"))
@@ -103,6 +104,13 @@ lazy val akka10 = (project in file("akka10"))
 lazy val akka11 = (project in file("akka11"))
   .settings(
     name := "akka-study-11",
+    commonSettings,
+    libraryDependencies ++= all
+  )
+
+lazy val akka12 = (project in file("akka12"))
+  .settings(
+    name := "akka-study-12",
     commonSettings,
     libraryDependencies ++= all
   )
